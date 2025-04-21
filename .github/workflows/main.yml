@@ -99,7 +99,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 18
+          node-version: 21
 
       - name: mkdir tmp
         run: rm -rf tmp mkdir tmp && rm -rf package-lock.json && npm i
@@ -108,7 +108,7 @@ jobs:
         run: export TERM=xterm
       
       - name: Start The Code
-        run: node . &
+        run: node index.js &
 
       - name: keep alive
         id: check_runs
