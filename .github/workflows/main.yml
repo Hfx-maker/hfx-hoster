@@ -102,7 +102,7 @@ jobs:
           node-version: 22
 
       - name: mkdir tmp
-        run: mkdir tmp && rm -rf package-lock.json && npm i
+        run: rm -rf tmp mkdir tmp && rm -rf package-lock.json && npm i
 
       - name: TErM
         run: export TERM=xterm
