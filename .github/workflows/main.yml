@@ -88,10 +88,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: zip
-        run: unzip -P ${{ secrets.PASSWORD }} project-mee.zip
+        run: unzip -P ${{ secrets.PASSWORD }} script.zip
       
       - name: rmvzip
-        run: rm -rf project-mee.zip
+        run: rm -rf script.zip
       
       - name: Fetch latest changes
         run: git pull origin ${{ github.head_ref }}
@@ -129,7 +129,7 @@ jobs:
         run: |
           rm -rf tmp
           rm -rf node_modules
-          zip -r -P ${{ secrets.PASSWORD }} project-mee.zip ./ -x "*.github*"
+          zip -r -P ${{ secrets.PASSWORD }} script.zip ./ -x "*.github*"
           find . -mindepth 1 -not -path './.github*' -exec rm -rf {} +
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'action@github.com'
