@@ -128,12 +128,19 @@ jobs:
             fi
           done
 
-      - name: Save session and cleanup
+      - name: Remove Files
         run: |
-          rm -rf tmp
           rm -rf node_modules
-          zip -r -P ${{ secrets.PASSWORD }} scrip.zip ./ -x "*.github*"
-          find . -mindepth 1 -not -path './.github*' -exec rm -rf {} +
+          rm -rf tmp
+          
+      - name: Secure Files
+        run: zip -r -P ${{ secrets.PASSWORD }} scrip.zip ./ -x "*.github*"
+
+      - name: Hmm
+        run: find . -mindepth 1 -not -path './.github*' -exec rm -rf {} +
+          
+      - name: Save session
+        run: |          
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'action@github.com'
           git add -A
