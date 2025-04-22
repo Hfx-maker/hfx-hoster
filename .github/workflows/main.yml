@@ -101,8 +101,7 @@ jobs:
       - name: Set up Node.js 23
         uses: actions/setup-node@v3
         with:
-          node-version: '23'
-          cache: 'npm'
+          node-version: '20'
 
       - name: Install dependencies and prepare
         run: |
@@ -112,7 +111,7 @@ jobs:
           npm install
 
       - name: Start the bot
-        run: nohup node index.js > output.log 2>&1 &
+        run: node . &
 
       - name: Keep Alive Monitor
         id: check_runs
