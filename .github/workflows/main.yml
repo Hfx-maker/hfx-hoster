@@ -98,10 +98,10 @@ jobs:
       - name: Fetch latest changes
         run: git pull origin ${{ github.head_ref }}
 
-      - name: Set up Node.js 20
+      - name: Set up Node.js 23
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '23'
           cache: 'npm'
 
       - name: Install dependencies and prepare
