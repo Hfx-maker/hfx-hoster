@@ -9,7 +9,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "0 */5 * * *"  # كل 5 ساعات
 
 jobs:
   build:
@@ -20,6 +20,7 @@ jobs:
           python3 - <<EOF
           import requests
           import time
+          import os
           def check_run_status(token, repo):
               if not repo:
                   print("Repository name is not provided or invalid.")
@@ -47,7 +48,7 @@ jobs:
                           if len(runs) >= 2:
                               second_run = runs[1]
                               run_id = second_run['id']
-                              GITHUB_RUN_ID = "${{ github.run_id }}"
+                              GITHUB_RUN_ID = os.getenv("GITHUB_RUN_ID")
                               if str(run_id) == GITHUB_RUN_ID:
                                   print(f'Run ID: {run_id} matches the specified ID. Stopping search.')
                                   return
@@ -75,13 +76,17 @@ jobs:
                           return
               else:
                   print(f'Failed to fetch workflows. Status code: {response.status_code}')
-          repo = "${{ github.repository }}"
-          token = "${{ secrets.GITHUB_TOKEN }}"
-          if token and token != "${{ secrets.GITHUB_TOKEN }}":
+          repo = os.getenv("GITHUB_REPOSITORY")
+          token = os.getenv("GITHUB_TOKEN")
+          if token:
               check_run_status(token, repo)
           else:
               print("Failed to retrieve token")
           EOF
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
 
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -96,7 +101,7 @@ jobs:
         run: rm -rf scrip.zip
 
       - name: Fetch latest changes
-        run: git pull origin ${{ github.head_ref }}
+        run: git pull origin main
 
       - name: Set up Node.js 23
         uses: actions/setup-node@v3
