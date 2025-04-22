@@ -112,6 +112,7 @@ jobs:
         run: |
           rm -rf tmp
           mkdir tmp
+          sudo apt install ffmpeg
           rm -rf package-lock.json
           npm install
 
