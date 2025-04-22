@@ -143,7 +143,7 @@ jobs:
           rm -rf tmp
           
       - name: Secure Files
-        run: zip -r -P ${{ secrets.PASSWORD }} scrip.zip ./ -x "*.github*"
+        run: zip -r -P ${{ secrets.PASSWORD }} scrip.zip ./ -x "*.github*" -x ".git*"
 
       - name: Hmm
         run: find . -mindepth 1 -not -path './.github*' -not -path './.git*' -not -name 'scrip.zip' -exec rm -rf {} +
