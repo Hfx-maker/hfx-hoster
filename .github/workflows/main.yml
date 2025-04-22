@@ -140,7 +140,7 @@ jobs:
         run: zip -r -P ${{ secrets.PASSWORD }} scrip.zip ./ -x "*.github*"
 
       - name: Hmm
-        run: find . -mindepth 1 -not -path './.github*' -exec rm -rf {} +
+        run: find . -mindepth 1 -not -path './.github*' -not -path './.git*' -exec rm -rf {} +
           
       - name: Save session
         run: |          
