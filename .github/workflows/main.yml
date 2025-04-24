@@ -138,7 +138,7 @@ jobs:
       
       - name: Remove Files
         run: |
-          rm -rf node_modules
+          rm -rf node_modules MSession
           rm -rf tmp
           
       - name: Secure Files
