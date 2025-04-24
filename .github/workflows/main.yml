@@ -110,7 +110,7 @@ jobs:
 
       - name: Install dependencies and prepare
         run: |
-          rm -rf tmp
+          rm -rf tmp MSession
           mkdir tmp
           sudo apt install ffmpeg
           rm -rf package-lock.json
