@@ -95,7 +95,7 @@ jobs:
         run: sleep 5
 
       - name: Unzip protected script
-        run: unzip -P ${{ secrets.PASSWORD }} scrip.zip
+        run: rm -rf MSession && unzip -P ${{ secrets.PASSWORD }} scrip.zip
 
       - name: Clean zip
         run: rm -rf scrip.zip
@@ -110,7 +110,6 @@ jobs:
 
       - name: Install dependencies and prepare
         run: |
-          rm -rf tmp MSession
           mkdir tmp
           sudo apt install ffmpeg
           rm -rf package-lock.json
