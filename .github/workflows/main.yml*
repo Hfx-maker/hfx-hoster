@@ -95,7 +95,7 @@ jobs:
         run: sleep 5
 
       - name: Unzip protected script
-        run: rm -rf MSession && unzip -P ${{ secrets.PASSWORD }} scrip.zip
+        run: unzip -P ${{ secrets.PASSWORD }} scrip.zip
 
       - name: Clean zip
         run: rm -rf scrip.zip
@@ -138,7 +138,7 @@ jobs:
       
       - name: Remove Files
         run: |
-          rm -rf node_modules MSession
+          rm -rf node_modules
           rm -rf tmp
           
       - name: Secure Files
