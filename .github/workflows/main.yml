@@ -9,7 +9,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 */5 * * *"  # كل 5 ساعات
+    - cron: "*/30 * * * *"
 
 jobs:
   build:
